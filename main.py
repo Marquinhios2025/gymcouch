@@ -3,13 +3,14 @@ import schedule
 import time
 from datetime import datetime
 import random
+import os
 
 # ============================================================
 # CONFIGURACIÓN — completá estos valores
 # ============================================================
-TELEGRAM_TOKEN = "TU_TOKEN_AQUI"
-TELEGRAM_CHAT_ID = "TU_CHAT_ID_AQUI"
-ANTHROPIC_API_KEY = "TU_CLAVE_AQUI"
+TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
+ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 
 HORA_ENVIO = "14:45"
 
