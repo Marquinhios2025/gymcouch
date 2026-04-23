@@ -91,7 +91,7 @@ def generar_mensaje_claude():
     dia = datetime.now().strftime("%A")
 
     prompt = f"""Sos alguien que conoce a Marcos de verdad, con toda su historia, y está harto de verlo fallar.
-Leé su contexto completo y escribile un mensaje para las 2:45pm del {dia}.
+Leé su contexto completo y escribile un mensaje. No menciones la hora en ningún momento.
 
 {CONTEXTO_PERSONAL}
 
@@ -138,7 +138,7 @@ Solo el texto del mensaje, nada más."""
         except:
             pass
         return (
-            "Son las 2:45. Pagaste el gym y no vas. Esa plata la debés.\n"
+            "Pagaste el gym y no vas. Esa plata la debés.\n"
             "Cerrá lo que tenés en la mano y andá. Ya."
         )
 
@@ -194,7 +194,7 @@ Solo el texto, nada más."""
         return data["content"][0]["text"].strip()
     except Exception as e:
         print(f"[ERROR] Claude API noche: {e}")
-        return "Son las 10. Salí a caminar 30 minutos. La cabeza se calma sola cuando el cuerpo se mueve."
+        return "Salí a correr o caminar. 30 minutos. La cabeza se calma sola cuando el cuerpo se mueve."
 
 
 def tarea_gym():
