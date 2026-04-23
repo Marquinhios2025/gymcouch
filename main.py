@@ -148,6 +148,15 @@ def main():
         schedule.run_pending()
         time.sleep(30)
 
+def test_mensaje():
+    print("Enviando mensaje de prueba...")
+    mensaje = generar_mensaje_claude()
+    print(f"Mensaje:\n{mensaje}\n")
+    enviar_telegram(mensaje)
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "test":
+        test_mensaje()
+    else:
+        main()
