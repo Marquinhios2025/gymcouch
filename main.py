@@ -95,7 +95,7 @@ Solo el texto del mensaje, nada más."""
                 "content-type": "application/json",
             },
             json={
-                "model": "claude-sonnet-4-20250514",
+                "model": "claude-sonnet-4-5",
                 "max_tokens": 300,
                 "messages": [{"role": "user", "content": prompt}],
             },
