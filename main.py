@@ -105,6 +105,7 @@ Solo el texto del mensaje, nada más."""
         return data["content"][0]["text"].strip()
     except Exception as e:
         print(f"[ERROR] Claude API: {e}")
+        print(f"Respuesta completa: {response.text}")
         return (
             "Son las 2:45. Gym a las 3.\n"
             "Hoy no hay día ideal, no hay condiciones perfectas. "
