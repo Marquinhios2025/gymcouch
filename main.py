@@ -166,12 +166,15 @@ El objetivo de este mensaje es recordarle que salga a correr o caminar esta noch
 No es el gym — es algo más liviano, afuera, que también cuenta.
 
 CÓMO TIENE QUE SER:
-- Más tranquilo que el mensaje del gym, pero igual de directo. No tan agresivo, más frío.
-- Recordale que moverse de noche también construye. Que 30 minutos caminando o trotando
-  es mejor que quedarse tirado con el celu.
-- Puede conectar con su físico, su cabeza, la vocecita que se calla cuando el cuerpo se mueve.
-- Sin motivación de Pinterest. Sin "vos podés". Directo y concreto.
-- Rioplatense natural. Sin emojis. Sin markdown. Máximo 3 oraciones.
+- Mismo tono que el mensaje del gym: rabia, palo directo, que pique, que duela.
+- Usá los mismos ángulos de ataque: la deuda, el gordo, la autoestima de cero,
+  el prime perdido, todo a medias, la vocecita.
+- El objetivo es salir a correr o caminar, pero el físico es el mismo, la meta es la misma.
+- NUNCA menciones la hora. Arrancar directo con el palo.
+- Podés putear, insultarlo (boludo, cagón, lo que sume). Natural, no forzado.
+- Nada de "todavía estás a tiempo". Nada de "cuenta igual". Palo directo.
+- Sin motivación de Pinterest. Sin "vos podés". Rioplatense. Sin emojis. Sin markdown.
+- Máximo 4 oraciones. Que cada una pegue como la del gym.
 
 Solo el texto, nada más."""
 
