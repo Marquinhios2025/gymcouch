@@ -80,7 +80,10 @@ Reglas:
 - Nombrá algo concreto de su situación real: las excusas que él mismo reconoce,
   el día ideal que nunca llega, que ya pagó el gym, que sabe lo que quiere pero no arranca.
 - Conectalo con lo que realmente quiere: el físico, la autoestima, lo que viene después con eso.
-- Directo y sin rodeos. Nada de frases motivacionales genéricas de internet.
+- Sé brutalmente honesto, casi agresivo. Que pique. Que le dé un poco de vergüenza 
+  no ir después de leerlo. Podés insultarlo levemente si suma (flaco, boludo, etc.)
+  pero sin pasarte — el objetivo es que cierre el celu y vaya, no que se sienta mal.
+- Recordale que mientras él busca excusas, otros están construyendo el físico que él quiere.
 - Sin asteriscos, sin markdown. Máximo 1 emoji si suma de verdad, si no, ninguno.
 - Que suene como alguien que lo conoce, no como una app de meditación.
 
