@@ -12,7 +12,8 @@ TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 
-HORA_ENVIO = "14:45"
+HORA_GYM = "14:30"
+HORA_NOCHE = "22:15"
 
 # ============================================================
 # CONTEXTO PERSONAL — todo extraído de conversaciones reales
@@ -155,25 +156,83 @@ def enviar_telegram(mensaje):
         print(f"[ERROR] Telegram conexión: {e}")
 
 
-def tarea_diaria():
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] Generando mensaje...")
+def generar_mensaje_noche():
+    """Genera un recordatorio nocturno para salir a correr o caminar."""
+    prompt = f"""Sos alguien que conoce a Marcos de verdad y le mandás un recordatorio a las 10:15pm.
+
+{CONTEXTO_PERSONAL}
+
+El objetivo de este mensaje es recordarle que salga a correr o caminar esta noche.
+No es el gym — es algo más liviano, afuera, que también cuenta.
+
+CÓMO TIENE QUE SER:
+- Más tranquilo que el mensaje del gym, pero igual de directo. No tan agresivo, más frío.
+- Recordale que moverse de noche también construye. Que 30 minutos caminando o trotando
+  es mejor que quedarse tirado con el celu.
+- Puede conectar con su físico, su cabeza, la vocecita que se calla cuando el cuerpo se mueve.
+- Sin motivación de Pinterest. Sin "vos podés". Directo y concreto.
+- Rioplatense natural. Sin emojis. Sin markdown. Máximo 3 oraciones.
+
+Solo el texto, nada más."""
+
+    try:
+        response = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={
+                "x-api-key": ANTHROPIC_API_KEY,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": "claude-sonnet-4-5",
+                "max_tokens": 150,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+            timeout=30,
+        )
+        data = response.json()
+        return data["content"][0]["text"].strip()
+    except Exception as e:
+        print(f"[ERROR] Claude API noche: {e}")
+        return "Son las 10. Salí a caminar 30 minutos. La cabeza se calma sola cuando el cuerpo se mueve."
+
+
+def tarea_gym():
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Generando mensaje gym...")
     mensaje = generar_mensaje_claude()
-    print(f"Mensaje generado:\n{mensaje}\n")
+    print(f"Mensaje:\n{mensaje}\n")
+    enviar_telegram(mensaje)
+
+
+def tarea_noche():
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Generando mensaje noche...")
+    mensaje = generar_mensaje_noche()
+    print(f"Mensaje:\n{mensaje}\n")
     enviar_telegram(mensaje)
 
 
 def main():
-    print(f"Bot activo. Enviará mensaje todos los días a las {HORA_ENVIO}")
+    print(f"Bot activo.")
+    print(f"  Gym:   todos los días a las {HORA_GYM}")
+    print(f"  Noche: todos los días a las {HORA_NOCHE}")
     print("Ctrl+C para detener.\n")
-    schedule.every().day.at(HORA_ENVIO).do(tarea_diaria)
+    schedule.every().day.at(HORA_GYM).do(tarea_gym)
+    schedule.every().day.at(HORA_NOCHE).do(tarea_noche)
     while True:
         schedule.run_pending()
         time.sleep(30)
 
 
 def test_mensaje():
-    print("Enviando mensaje de prueba...")
+    print("=== TEST GYM ===")
     mensaje = generar_mensaje_claude()
+    print(f"Mensaje:\n{mensaje}\n")
+    enviar_telegram(mensaje)
+
+
+def test_noche():
+    print("=== TEST NOCHE ===")
+    mensaje = generar_mensaje_noche()
     print(f"Mensaje:\n{mensaje}\n")
     enviar_telegram(mensaje)
 
@@ -182,5 +241,7 @@ if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "test":
         test_mensaje()
+    elif len(sys.argv) > 1 and sys.argv[1] == "testnoche":
+        test_noche()
     else:
         main()
