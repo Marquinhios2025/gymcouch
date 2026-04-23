@@ -6,7 +6,7 @@ import random
 import os
 
 # ============================================================
-# CONFIGURACIÓN — completá estos valores
+# CONFIGURACIÓN
 # ============================================================
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
@@ -15,45 +15,36 @@ ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 HORA_ENVIO = "14:45"
 
 # ============================================================
-# CONTEXTO PERSONAL — extraído de conversaciones reales
+# CONTEXTO PERSONAL
 # ============================================================
 CONTEXTO_PERSONAL = """
 Quién es esta persona:
 - Tiene 20 años casi 21, vive en Fray Bentos estudiando Ingeniería en Mecatrónica en UTEC.
-  Es de Carmelo. Vive solo, alquila.
+  Es de Carmelo. Vive solo, alquila. No sobra la plata.
 - Es introvertido, directo, no le gusta el relleno ni las frases vacías.
 - Tiene metas grandes: quiere fundar empresas, ser millonario, construir proyectos serios.
   Su cabeza está siempre en plata y futuro.
 - Entiende perfectamente que el físico no es vanidad — es la base. Sabe que el físico
   trae autoestima, la autoestima trae presencia, y con eso viene lo social, el amor, la plata.
   Lo tiene clarísimo en la cabeza. El problema es la acción.
+- Lo que más le duele: gastar plata en algo que no usa. No tener lo que quiere. Saber que
+  podría pero no hace nada.
 
 Su relación con el gym:
-- Pagó el gym (Fit House, Fray Bentos). Lo tiene. Va a las 3 de la tarde.
-- Va muy irregular. A veces va varios días, a veces desaparece una semana.
-- Sus excusas varían según el día: a veces termina de comer tarde y se le mezcla
-  con lavar los platos o limpiar. A veces es pereza pura. A veces se queda con el celu
-  o en la compu y se le va la hora sin darse cuenta.
-- Él mismo lo sabe y lo admite: "soy pura excusa", "espero que el día se alinee ideal y nunca es así".
+- Pagó el gym (Fit House, Fray Bentos). Plata que salió de su bolsillo. Va a las 3 de la tarde.
+- Va muy irregular. A veces va varios días, a veces desaparece una semana entera.
+- Sus excusas varían: a veces comió tarde y se mezcla con lavar o limpiar. A veces pereza pura.
+  A veces se queda con el celu o la compu y se le va la hora sin darse cuenta.
+- Él mismo lo admite: "soy pura excusa", "espero que el día se alinee ideal y nunca es así".
 - Quiere que le duela faltar. Quiere que el gym sea innegociable.
-
-Lo que lo mueve de verdad:
-- No quiere frases de Pinterest. No quiere "vos podés".
-- Lo que le llega es la verdad directa: que mientras él falta, el tiempo pasa igual.
-  Que la irregularidad es peor que no empezar. Que cada vez que no va, el día ideal
-  que espera se aleja más.
-- Le importa verse bien en el espejo. Que los demás lo noten. Sentirse seguro y con carácter.
-- Es alguien que quiere construir todo: físico, plata, relaciones. Y entiende que
-  el físico es la primera prueba de que puede comprometerse con algo.
-- Sabe que con el físico viene la autoestima, y con eso llega lo demás: lo social, el amor, la plata.
 """
 
 # ============================================================
-# Variantes de situación para que el mensaje no sea siempre igual
+# Variantes de situación
 # ============================================================
 SITUACIONES = [
-    "Hoy quizás ya comió y está tentado a quedarse tirado.",
-    "Hoy quizás está cansado después de clases virtuales y la excusa ya está lista.",
+    "Hoy quizás ya comió y está tentado a quedarse tirado con el celu.",
+    "Hoy quizás está cansado después de clases virtuales y la excusa ya está lista en la cabeza.",
     "Hoy quizás está con el celu y se le va a pasar la hora si no se mueve ya.",
     "Hoy quizás está dudando, buscando inconscientemente una razón para no ir.",
     "Hoy quizás está pensando 'mañana voy' otra vez.",
@@ -63,29 +54,29 @@ SITUACIONES = [
 
 
 def generar_mensaje_claude():
-    """Genera un mensaje motivacional personalizado usando Claude."""
     situacion = random.choice(SITUACIONES)
     dia = datetime.now().strftime("%A")
 
-    prompt = f"""Sos un amigo que conoce muy bien a esta persona. Leé su contexto y escribile un mensaje.
+    prompt = f"""Sos un amigo que conoce muy bien a esta persona y está harto de verlo fallar. 
+Leé su contexto y escribile un mensaje para las 2:45pm.
 
 {CONTEXTO_PERSONAL}
 
 Hoy es {dia}. {situacion}
 
-Escribile un mensaje corto (máximo 4-5 oraciones) para las 2:45pm recordándole que tiene gym a las 3.
+Escribile un mensaje corto (máximo 4-5 oraciones).
 
-Reglas:
-- Hablale de vos a vos, en rioplatense natural (vas, tenés, hacés, etc.)
-- Nombrá algo concreto de su situación real: las excusas que él mismo reconoce,
-  el día ideal que nunca llega, que ya pagó el gym, que sabe lo que quiere pero no arranca.
-- Conectalo con lo que realmente quiere: el físico, la autoestima, lo que viene después con eso.
-- Sé brutalmente honesto, casi agresivo. Que pique. Que le dé un poco de vergüenza 
-  no ir después de leerlo. Podés insultarlo levemente si suma (flaco, boludo, etc.)
-  pero sin pasarte — el objetivo es que cierre el celu y vaya, no que se sienta mal.
-- Recordale que mientras él busca excusas, otros están construyendo el físico que él quiere.
-- Sin asteriscos, sin markdown. Máximo 1 emoji si suma de verdad, si no, ninguno.
-- Que suene como alguien que lo conoce, no como una app de meditación.
+Reglas — seguílas al pie de la letra:
+- Tono: rabia contenida, palo directo. Como alguien que lo quiere pero está harto de las excusas.
+- Usá su dolor real: está pagando un gym que no usa. Quiere plata, físico, mina, vida — 
+  y no puede ni cumplirse ir a entrenar. Eso tiene que picar.
+- Podés insultarlo si suma: boludo, cagón, flaco. Natural, no forzado.
+- Recordale que el tiempo corre igual mientras él busca excusas. Que otros están construyendo
+  lo que él quiere mientras él está tirado.
+- Que la rabia y la vergüenza lo muevan. El objetivo es que cierre lo que tiene en la mano y vaya.
+- NADA de "vos podés", NADA de aliento suave, NADA de frases de Pinterest.
+- Sin asteriscos, sin markdown. Sin emojis.
+- Rioplatense natural (vas, tenés, hacés).
 
 Solo el texto del mensaje, nada más."""
 
@@ -110,14 +101,12 @@ Solo el texto del mensaje, nada más."""
         print(f"[ERROR] Claude API: {e}")
         print(f"Respuesta completa: {response.text}")
         return (
-            "Son las 2:45. Gym a las 3.\n"
-            "Hoy no hay día ideal, no hay condiciones perfectas. "
-            "Agarrá la mochila y andá. Ya sabés por qué."
+            "Son las 2:45. Estás pagando un gym que no usás.\n"
+            "Cerrá lo que tenés en la mano y andá. Ya."
         )
 
 
 def enviar_telegram(mensaje):
-    """Envía el mensaje por Telegram."""
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     payload = {
         "chat_id": TELEGRAM_CHAT_ID,
@@ -140,24 +129,21 @@ def tarea_diaria():
     enviar_telegram(mensaje)
 
 
-# ============================================================
-# Scheduler
-# ============================================================
 def main():
     print(f"Bot activo. Enviará mensaje todos los días a las {HORA_ENVIO}")
     print("Ctrl+C para detener.\n")
-
     schedule.every().day.at(HORA_ENVIO).do(tarea_diaria)
-
     while True:
         schedule.run_pending()
         time.sleep(30)
+
 
 def test_mensaje():
     print("Enviando mensaje de prueba...")
     mensaje = generar_mensaje_claude()
     print(f"Mensaje:\n{mensaje}\n")
     enviar_telegram(mensaje)
+
 
 if __name__ == "__main__":
     import sys
