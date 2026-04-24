@@ -12,8 +12,8 @@ TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
 TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 
-HORA_GYM = "14:30"
-HORA_NOCHE = "22:15"
+HORA_GYM = "17:30"
+HORA_NOCHE = "01:20"
 
 # ============================================================
 # CONTEXTO PERSONAL — todo extraído de conversaciones reales
